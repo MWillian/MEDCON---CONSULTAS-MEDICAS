@@ -1,7 +1,8 @@
 package br.com.medcon.vo;
 
-import br.com.medcon.vo.enums.StatusAgendamento;
 import java.time.LocalDateTime;
+
+import br.com.medcon.enums.StatusAgendamento;
 
 public class Agendamento {
     

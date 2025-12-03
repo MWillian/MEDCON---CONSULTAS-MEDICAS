@@ -1,7 +1,8 @@
 package br.com.medcon.vo;
-import br.com.medcon.vo.enums.Prioridade;
-import br.com.medcon.vo.enums.StatusSolicitacao;
 import java.time.LocalDateTime;
+
+import br.com.medcon.enums.Prioridade;
+import br.com.medcon.enums.StatusSolicitacao;
 
 public class Solicitacao {
     
