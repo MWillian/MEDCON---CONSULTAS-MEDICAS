@@ -1,4 +1,4 @@
-package br.com.medcon.vo.enums;
+package br.com.medcon.enums;
 
 public enum CargoProfissional {
     MEDICO, ENFERMEIRO, TECNICO;

@@ -1,6 +1,7 @@
 package br.com.medcon.vo;
 import java.time.LocalDate;
-import br.com.medcon.vo.enums.CargoProfissional;
+
+import br.com.medcon.enums.CargoProfissional;
 
 public class ProfissionalSaude extends Pessoa {
     private String registroProfissional;
