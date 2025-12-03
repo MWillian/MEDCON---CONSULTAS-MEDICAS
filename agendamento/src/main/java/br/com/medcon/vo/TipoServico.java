@@ -16,10 +16,19 @@ public class TipoServico {
     }
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
+
     public String getNome() { return nome; }
     public void setNome(String nome) { this.nome = nome; }
+    
     public int getDuracaoMinutos() { return duracaoMinutos; }
     public void setDuracaoMinutos(int duracaoMinutos) { this.duracaoMinutos = duracaoMinutos; }
+
     public Especialidade getEspecialidadeNecessaria() { return especialidadeNecessaria; }
     public void setEspecialidadeNecessaria(Especialidade especialidadeNecessaria) { this.especialidadeNecessaria = especialidadeNecessaria; }
+
+    @Override
+    public String toString() {
+        return "Tipo Serviço: ID= " + getId() + " | nome= " + getNome() 
+        + " | Duração em minutos= " + getDuracaoMinutos() + " | Especialidade Necessaria= " + getEspecialidadeNecessaria();
+    }
 }
