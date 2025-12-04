@@ -112,11 +112,10 @@ public class TipoServicoDao implements ITipoServicoDAO {
 
     private TipoServico montarTipoServico(ResultSet result, Especialidade especialidade) throws SQLException{
         TipoServico tipoServico = new TipoServico(
-            result.getLong("id"),
+            result.getInt("id"),
             result.getString("nome"),
             result.getInt("duracao_media_minutos"),
             especialidade);
-        
         return tipoServico;
     }
 
