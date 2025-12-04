@@ -143,6 +143,25 @@ public class ProfissionalSaudeDAO implements IDAO<ProfissionalSaude> {
         return lista;
     }
 
+    public List<ProfissionalSaude> listarPorEspecialidade(int idEspecialidade) throws SQLException {
+        String sql = "SELECT p.*, prof.registro_profissional, prof.tipo_profissional, " +
+                     "e.id as id_esp, e.nome as nome_esp, e.descricao as desc_esp " +
+                     "FROM tb_pessoa p " +
+                     "JOIN tb_profissional prof ON p.id = prof.id_pessoa " +
+                     "JOIN tb_especialidade e ON prof.id_especialidade = e.id " +
+                     "WHERE prof.id_especialidade = ?";
+        List<ProfissionalSaude> lista = new ArrayList<>();
+        try (Connection conn = factory.getConexao();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setInt(1, idEspecialidade);
+            try (ResultSet rs = stmt.executeQuery()) {
+                while (rs.next()) {
+                    lista.add(montarObjeto(rs)); 
+                }
+            }
+        }
+        return lista;
+    }
     private ProfissionalSaude montarObjeto(ResultSet result) throws SQLException {
         ProfissionalSaude p = new ProfissionalSaude();
         p.setId(result.getInt("id"));
