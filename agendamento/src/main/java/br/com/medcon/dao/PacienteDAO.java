@@ -116,6 +116,24 @@ public class PacienteDAO implements IDAO<Paciente> {
         }
         return paciente;
     }
+    
+    public Paciente buscarPorCpf(String cpf) throws SQLException {
+        String sql = "SELECT p.*, pac.cartao_sus FROM tb_pessoa p " +
+                     "JOIN tb_paciente pac ON p.id = pac.id_pessoa " +
+                     "WHERE p.cpf = ?";
+        Paciente paciente = null;
+        try (Connection conn = factory.getConexao();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, cpf);
+            try (ResultSet result = stmt.executeQuery()) {
+                if (result.next()) {
+                    paciente = montarObjeto(result);
+                }
+            }
+        }
+        return paciente;
+    }
+
     @Override
     public List<Paciente> listarTodos() throws SQLException {
         String sql = "SELECT p.*, pac.cartao_sus FROM tb_pessoa p " +
