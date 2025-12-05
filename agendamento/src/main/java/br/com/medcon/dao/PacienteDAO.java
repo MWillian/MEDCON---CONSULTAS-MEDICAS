@@ -15,6 +15,7 @@ public class PacienteDAO implements IDAO<Paciente> {
     public PacienteDAO() {
         this.factory = new ConexaoFactory();
     }
+
     @Override
     public void salvar(Paciente paciente) throws SQLException {
         String sqlPessoa = "INSERT INTO tb_pessoa (nome, cpf, data_nascimento, telefone, endereco) VALUES (?, ?, ?, ?, ?)";
@@ -60,6 +61,7 @@ public class PacienteDAO implements IDAO<Paciente> {
             if (conn != null) factory.fecharConexao(conn);
         }
     }
+
     @Override
     public void atualizar(Paciente paciente) throws SQLException {
         String sqlPessoa = "UPDATE tb_pessoa SET nome=?, cpf=?, data_nascimento=?, telefone=?, endereco=? WHERE id=?";
@@ -90,6 +92,7 @@ public class PacienteDAO implements IDAO<Paciente> {
             if (conn != null) factory.fecharConexao(conn);
         }
     }
+
     @Override
     public void deletar(int id) throws SQLException { 
         String sql = "DELETE FROM tb_pessoa WHERE id = ?";
@@ -99,6 +102,7 @@ public class PacienteDAO implements IDAO<Paciente> {
             stmt.execute();
         }
     }
+
     @Override
     public Paciente buscarPorId(int id) throws SQLException {
         String sql = "SELECT p.*, pac.cartao_sus FROM tb_pessoa p " +
@@ -148,6 +152,7 @@ public class PacienteDAO implements IDAO<Paciente> {
         }
         return lista;
     }
+
     private Paciente montarObjeto(ResultSet result) throws SQLException {
         Paciente p = new Paciente();
         p.setId(result.getInt("id")); 

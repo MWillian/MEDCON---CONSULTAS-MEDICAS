@@ -13,6 +13,7 @@ public class EspecialidadeDAO implements IDAO<Especialidade>{
     public EspecialidadeDAO(){
         this.factory = new ConexaoFactory(); //cria uma conexão específica com o SQLite
     }
+    
     @Override
     public void salvar(Especialidade especialidade) throws SQLException {
         String sql = "INSERT INTO tb_especialidade (nome, descricao) VALUES (?, ?)";
@@ -23,6 +24,7 @@ public class EspecialidadeDAO implements IDAO<Especialidade>{
                 stmt.execute(); //roda a string no banco
             }
     }
+
     @Override
     public void atualizar(Especialidade especialidade) throws SQLException {
         String sql = "UPDATE tb_especialidade SET nome = ?, descricao = ? WHERE id = ?";
@@ -34,6 +36,7 @@ public class EspecialidadeDAO implements IDAO<Especialidade>{
                 stmt.executeUpdate();
             }
     }
+
     @Override
     public void deletar(int id) throws SQLException {
         String sql = "DELETE FROM tb_especialidade WHERE id = ?";
@@ -43,6 +46,7 @@ public class EspecialidadeDAO implements IDAO<Especialidade>{
                 stmt.execute();
             }
     }
+
     @Override
     public Especialidade buscarPorId(int id) throws SQLException {
         String sql = "SELECT * FROM tb_especialidade WHERE id = ?";

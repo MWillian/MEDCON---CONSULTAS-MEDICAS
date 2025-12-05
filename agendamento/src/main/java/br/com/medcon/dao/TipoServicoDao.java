@@ -1,43 +1,40 @@
 package br.com.medcon.dao;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
-import br.com.medcon.interfaces.ITipoServicoDAO;
+import br.com.medcon.interfaces.IDAO;
 import br.com.medcon.vo.Especialidade;
 import br.com.medcon.vo.TipoServico;
 
-public class TipoServicoDAO implements ITipoServicoDAO {
+public class TipoServicoDAO implements IDAO<TipoServico> {
     private final ConexaoFactory factory;
-
     public TipoServicoDAO() {
         this.factory = new ConexaoFactory();
     }
 
     @Override
-    public void salvar(TipoServico tipoServico, Especialidade id_especialidade) throws SQLException {
+    public void salvar(TipoServico tipoServico) throws SQLException {
         String sql = "INSERT INTO tb_tipo_servico (nome, duracao_media_minutos, id_especialidade_necessaria) VALUES (?, ?, ?);";
         try (Connection conn = factory.getConexao();
                 PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setString(1, tipoServico.getNome());
             stmt.setInt(2, tipoServico.getDuracaoMinutos());
-            stmt.setInt(3, id_especialidade.getId());
+            stmt.setInt(3, tipoServico.getEspecialidadeNecessaria().getId());
             stmt.execute();
         }
     }
 
     @Override
-    public void atualizar(TipoServico tipoServico, Especialidade id_especialidade) throws SQLException {
+    public void atualizar(TipoServico tipoServico) throws SQLException {
         String sql = "UPDATE tb_tipo_servico SET nome = ?, duracao_media_minutos = ?, id_especialidade_necessaria = ? WHERE id = ?;";
         try (Connection conn = factory.getConexao();
                 PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setString(1, tipoServico.getNome());
             stmt.setInt(2, tipoServico.getDuracaoMinutos());
-            stmt.setInt(3, id_especialidade.getId());
+            stmt.setInt(3, tipoServico.getEspecialidadeNecessaria().getId());
             stmt.setLong(4, tipoServico.getId());
             stmt.execute();
         }
@@ -68,7 +65,6 @@ public class TipoServicoDAO implements ITipoServicoDAO {
         "INNER JOIN tb_especialidade " +
         "ON tb_tipo_servico.id_especialidade_necessaria = tb_especialidade.id " +
         "WHERE tb_tipo_servico.id = ?;";
-
         TipoServico tipoServico = null;
         Especialidade especialidade;
         try (Connection conn = factory.getConexao();
@@ -81,7 +77,6 @@ public class TipoServicoDAO implements ITipoServicoDAO {
                 }
             }
         }
-
         return tipoServico;
     }
 
