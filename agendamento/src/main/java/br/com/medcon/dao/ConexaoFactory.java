@@ -8,9 +8,11 @@ public class ConexaoFactory {
     public ConexaoFactory() {
         this.conexaoInstance = new ConexaoSQLite();
     }
+
     public Connection getConexao() throws SQLException {
         return this.conexaoInstance.getConnection();
     }
+    
     public void fecharConexao(Connection conn) {
         this.conexaoInstance.closeConnection(conn);
     }
