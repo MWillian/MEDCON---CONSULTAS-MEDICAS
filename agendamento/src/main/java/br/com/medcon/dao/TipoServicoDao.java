@@ -70,7 +70,7 @@ public class TipoServicoDao implements ITipoServicoDAO {
         "WHERE tb_tipo_servico.id = ?;";
 
         TipoServico tipoServico = null;
-        Especialidade especialidade = null;
+        Especialidade especialidade;
         try (Connection conn = factory.getConexao();
                 PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setInt(1, id);
