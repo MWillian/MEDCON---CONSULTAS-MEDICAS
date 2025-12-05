@@ -13,7 +13,7 @@ public class Main {
 
         String nomeBR = dia.getDisplayName(TextStyle.FULL, brasil).toUpperCase();
         String nomeUS = dia.getDisplayName(TextStyle.FULL, eua);
-
+        System.out.println(dia);
         System.out.println(nomeBR); // segunda-feira
         System.out.println(nomeUS); // Monday
 
